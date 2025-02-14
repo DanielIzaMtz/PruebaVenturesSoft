@@ -1,0 +1,13 @@
+  <div class="container text-center mt-5 pt-5">
+    <h1 class="fw-bold mx-auto display-1">{{ 'CATEGORIAS.TITULO' | translate }}</h1>
+
+    <div class="d-flex justify-content-center flex-wrap mt-5 gap-3">
+      <button
+      class="btn btn-light rounded-pill px-4 categoria-btn"
+      *ngFor="let categoria of categorias;"
+      [ngClass]="{'active-btn': selectedCategory === categoria.idMenu}"
+      (click)="seleccionarCategoria(categoria.idMenu)">
+      {{ categoria['descripción'] }}
+    </button>
+    </div>
+  </div>

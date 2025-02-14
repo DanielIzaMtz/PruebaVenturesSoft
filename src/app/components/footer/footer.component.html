@@ -1,0 +1,56 @@
+<footer class="bg-white text-center py-2 border-top">
+
+  <div class="dropdown d-flex justify-content-end">
+    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-translate"></i> {{ 'IDIOMAS.' + selectedLanguage.toUpperCase() | translate }}
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+      <li><a class="dropdown-item" (click)="changeLanguage('es')">{{ 'IDIOMAS.SPANISH' | translate }}</a></li>
+      <li><a class="dropdown-item" (click)="changeLanguage('en')">{{ 'IDIOMAS.ENGLISH' | translate }}</a></li>
+      <li><a class="dropdown-item" (click)="changeLanguage('fr')">{{ 'IDIOMAS.FRENCH' | translate }}</a></li>
+      <li><a class="dropdown-item" (click)="changeLanguage('de')">{{ 'IDIOMAS.GERMAN' | translate }}</a></li>
+    </ul>
+  </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="container p-4">
+        <div class="row justify-content-center">
+          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#!" class="text-blue text-decoration-none">{{ 'MENU.HEADER' | translate }}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#!" class="text-blue text-decoration-none">{{ 'MENU.TABLE' | translate }}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#!" class="text-blue text-decoration-none">{{ 'MENU.MENU' | translate }}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#!" class="text-blue text-decoration-none">{{ 'MENU.BRAND' | translate }}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#!" class="text-blue text-decoration-none">{{ 'MENU.DETAIL' | translate }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</footer>

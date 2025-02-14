@@ -1,0 +1,47 @@
+{
+  "MENU": {
+    "HEADER": "En-tête",
+    "TABLE": "Tableau",
+    "MENU": "Menu",
+    "BRAND": "Marque",
+    "DETAIL": "Détail",
+    "FOOTER": "Pied de page"
+  },
+  "HEADER": {
+    "LOGIN": "Accéder",
+    "LINK_CARD": "Associez votre carte",
+    "MENU": "Menu"
+  },
+  "TABLA": {
+    "TITULO": "Liez votre carte professionnelle pour <span class='text-primary'>débloquer le cashback</span> des offres",
+    "FILA1": "Aucun lien de carte requis",
+    "FILA2": "Liez votre carte pour obtenir",
+    "COLUMNA1": "Coupons instantanés",
+    "COLUMNA2": "Accès complet aux avantages de Visa Savings Edge",
+    "COLUMNA3": "Suivi du cashback",
+    "COLUMNA4": "Recherche d'emplacements de distributeurs automatiques",
+    "COLUMNA5": "Offres de cashback",
+    "LINK_CARD": "Associez votre carte"
+  },
+  "CATEGORIAS": {
+    "TITULO": "Explorez les coupons instantanés"
+  },
+  "MARCA": {
+    "TITULO": "Coupons instantanés en vedette (200)",
+    "FILTRO": "Filtre",
+    "CUPON": "Coupon instantané",
+    "OBTENER": "Obtenir un coupon",
+    "CUPONES": "Plus de coupons instantanés"
+  },
+  "DETALLE": {
+    "TITULO": "Débloquez toute la puissance de",
+    "CUPON": "Remise en argent",
+    "LINK_CARD": "Associez votre carte"
+  },
+  "IDIOMAS": {
+    "ENGLISH": "Anglais (États-Unis)",
+    "SPANISH": "Espagnol (Mexique)",
+    "FRENCH": "Français (France)",
+    "GERMAN": "Allemand (Allemagne)"
+  }
+}

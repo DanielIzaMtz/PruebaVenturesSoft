@@ -1,0 +1,31 @@
+.cashback-section {
+  background: linear-gradient(to bottom, #0d6efd, #ffffff);
+}
+
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card img {
+  height: 150px;
+  object-fit: cover;
+}
+
+.btn-primary {
+  font-weight: bold;
+}
+
+.cashback-badge {
+  position: absolute;
+  top: 130px;
+  left: 15px;
+  transform: none;
+  background: #8cdff6;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+

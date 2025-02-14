@@ -1,0 +1,47 @@
+{
+  "MENU": {
+    "HEADER": "Kopfzeile",
+    "TABLE": "Tabelle",
+    "MENU": "Menü",
+    "BRAND": "Marke",
+    "DETAIL": "Detail",
+    "FOOTER": "Fußzeile"
+  },
+  "HEADER": {
+    "LOGIN": "Zugang",
+    "LINK_CARD": "Verknüpfen Sie Ihre Karte",
+    "MENU": "Menü"
+  },
+  "TABLA": {
+    "TITULO": "Verknüpfen Sie Ihre Geschäftskarte, um <span class='text-primary'>Cashback freizuschalten</span> Angebote",
+    "FILA1": "Keine Kartenverknüpfung erforderlich",
+    "FILA2": "Verknüpfen Sie Ihre Karte, um zu erhalten",
+    "COLUMNA1": "Sofortige Gutscheine",
+    "COLUMNA2": "Voller Zugriff auf die Vorteile von Visa Savings Edge",
+    "COLUMNA3": "Cashback-Verfolgung",
+    "COLUMNA4": "Geldautomaten-Standortsuche",
+    "COLUMNA5": "Cashback-Angebote",
+    "LINK_CARD": "Verknüpfen Sie Ihre Karte"
+  },
+  "CATEGORIAS": {
+    "TITULO": "Entdecken Sie Sofortgutscheine"
+  },
+  "MARCA": {
+    "TITULO": "Hervorgehobene Sofortgutscheine (200)",
+    "FILTRO": "Filter",
+    "CUPON": "Sofortgutschein",
+    "OBTENER": "Gutschein erhalten",
+    "CUPONES": "Weitere Sofortgutscheine"
+  },
+  "DETALLE": {
+    "TITULO": "Entfessle die volle Kraft von",
+    "CUPON": "Cashback",
+    "LINK_CARD": "Verknüpfen Sie Ihre Karte"
+  },
+  "IDIOMAS": {
+    "ENGLISH": "Englisch (Vereinigte Staaten)",
+    "SPANISH": "Spanisch (Mexiko)",
+    "FRENCH": "Französisch (Frankreich)",
+    "GERMAN": "Deutsch (Deutschland)"
+  }
+}

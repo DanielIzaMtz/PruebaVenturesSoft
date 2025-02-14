@@ -1,0 +1,18 @@
+.categoria-btn {
+  background-color: #dfe4e9;
+  color: #000;
+  border: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.categoria-btn:hover {
+  background-color: #007bff;
+  color: white;
+  border: 2px solid #0d6efd;
+}
+
+.active-btn {
+  background-color: #151615;
+  color: white;
+  border: 2px solid #151615;
+}

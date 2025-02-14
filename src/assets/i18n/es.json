@@ -1,0 +1,47 @@
+{
+  "MENU": {
+    "HEADER": "Encabezado",
+    "TABLE": "Tabla",
+    "MENU": "Menú",
+    "BRAND": "Marca",
+    "DETAIL": "Detalle",
+    "FOOTER": "Pie de página"
+  },
+  "HEADER": {
+    "LOGIN": "Acceso",
+    "LINK_CARD": "Vincula tu Tarjeta",
+    "MENU": "Menu"
+  },
+  "TABLA": {
+    "TITULO": "Vincula tu tarjeta de negocios para <span class='text-primary'>desbloquear reembolsos</span> en ofertas",
+    "FILA1":"No necesario vincular la tarjeta",
+    "FILA2":"Vincula tu tarjeta para obtener",
+    "COLUMNA1":"Cupones Instantaneos",
+    "COLUMNA2":"Acceso total a los beneficios de Visa Savings Edge",
+    "COLUMNA3":"Seguimiento de reembolsos",
+    "COLUMNA4":"Búsqueda de ubicaciones de máquinas",
+    "COLUMNA5":"Ofertas de reembolso",
+    "LINK_CARD": "Vincula tu Tarjeta"
+  },
+  "CATEGORIAS": {
+    "TITULO": "Explorar cupones instantáneos"
+  },
+  "MARCA": {
+    "TITULO": "Cupones instantáneos destacados (200)",
+    "FILTRO": "Filtro",
+    "CUPON": "Cupón Instantaneo",
+    "OBTENER": "Obtener Cupón",
+    "CUPONES": "Más Cupones Instantáneos"
+  },
+  "DETALLE": {
+    "TITULO": "Desbloquea todo el poder de",
+    "CUPON": "Reembolso",
+    "LINK_CARD": "Vincula tu Tarjeta"
+  },
+  "IDIOMAS": {
+    "ENGLISH": "Inglés (Estados Unidos)",
+    "SPANISH": "Español (México)",
+    "FRENCH": "Francés (Francia)",
+    "GERMAN": "Alemán (Alemania)"
+  }
+}

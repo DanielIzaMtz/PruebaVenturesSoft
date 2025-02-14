@@ -1,0 +1,46 @@
+{
+  "MENU": {
+    "HEADER": "Header",
+    "TABLE": "Table",
+    "MENU": "Menu",
+    "BRAND": "Marca",
+    "DETAIL": "Detail",
+    "FOOTER": "Footer"
+  },
+  "HEADER": {
+    "LOGIN": "LOG IN",
+    "LINK_CARD": "LINK YOUR CARD",
+    "MENU": "Menu"
+  },
+  "TABLA": {
+    "TITULO": "Link your business card to <span class='text-primary'>unlock cashback</span> offers",
+    "FILA1":"No Card Linking Required",
+    "FILA2":"Link Your Card to get",
+    "COLUMNA1":"Instant coupons",
+    "COLUMNA2":"Full Access to Visa Savings Edge benefits",
+    "COLUMNA3":"Cashback Traking",
+    "COLUMNA4":"Machine Locations Search",
+    "COLUMNA5":"Cashback Offers",
+    "LINK_CARD": "LINK YOUR CARD"
+  },
+  "CATEGORIAS": {
+    "TITULO": "Explore Instant Coupons"
+  },  "MARCA": {
+    "TITULO": "Featured Instant Coupons (200)",
+    "FILTRO": "Filter",
+    "CUPON": "Instant Coupon",
+    "OBTENER": "Get Coupon",
+    "CUPONES": "More Instant Coupons"
+  },
+  "DETALLE": {
+    "TITULO": "Unlock the Full Power of",
+    "CUPON": "Cashback",
+    "LINK_CARD": "Link Your Card"
+  },
+  "IDIOMAS": {
+    "ENGLISH": "English (United States)",
+    "SPANISH": "Español (México)",
+    "FRENCH": "Français (France)",
+    "GERMAN": "Deutsch (Deutschland)"
+  }
+}

@@ -1,0 +1,22 @@
+<div class="container-fluid text-center cashback-section py-5 mt-2">
+  <h1 class="fw-bold text-white py-5 display-3">{{ 'DETALLE.TITULO' | translate }}</h1>
+
+  <div class="row justify-content-center">
+
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4" *ngFor="let marca of marcas;">
+      <div class="card h-100 d-flex flex-column">
+        <img *ngIf="marca.imagen" [src]="marca.imagen" class="card-img-top mb-2" alt="Fissure in Sandstone" />
+        <div class="cashback-badge"><i class="bi bi-credit-card-2-back"></i> {{ 'DETALLE.CUPON' | translate }}</div>
+        <div class="card-body">
+          <p class="card-title text-start">{{ marca.nombreMarca }}</p>
+          <h5 class="card-text text-start fw-bold">{{ marca['descripción'] }}</h5>
+        </div>
+
+      </div>
+    </div>
+    </div>
+
+  <div class="d-flex justify-content-center mt-4 py-3">
+    <button class="btn btn-primary btn-lg rounded-pill px-4">{{ 'DETALLE.LINK_CARD' | translate }} <i class="bi bi-chevron-right fs-6"></i></button>
+  </div>
+</div>

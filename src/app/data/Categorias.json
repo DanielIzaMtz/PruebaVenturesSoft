@@ -1,0 +1,55 @@
+{
+  "error": false,
+  "codigo": "EP000",
+  "message": "Success",
+  "menuItems": [
+    {
+      "idMenu": 1001,
+      "descripción": "Featured"
+    },
+    {
+      "idMenu": 2100,
+      "descripción": "Restaurants"
+    },
+    {
+      "idMenu": 3400,
+      "descripción": "Travel"
+    },
+    {
+      "idMenu": 4600,
+      "descripción": "Fuel"
+    },
+    {
+      "idMenu": 5900,
+      "descripción": "Services"
+    },
+    {
+      "idMenu": 7100,
+      "descripción": "Gits & Entertainment"
+    },
+    {
+      "idMenu": 8300,
+      "descripción": "Shopping"
+    },
+    {
+      "idMenu": 9200,
+      "descripción": "Electronics"
+    },
+    {
+      "idMenu": 1100,
+      "descripción": "Software"
+    },
+    {
+      "idMenu": 1120,
+      "descripción": "Health & Beauty"
+    },
+    {
+      "idMenu": 1230,
+      "descripción": "Office Supplies"
+    },
+    {
+      "idMenu": 1340,
+      "descripción": "Automotive"
+    }
+  ]
+}
