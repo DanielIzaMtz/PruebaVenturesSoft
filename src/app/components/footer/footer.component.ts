@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  selectedLanguage: string = localStorage.getItem('language') || 'en';
+  selectedLanguage: string = 'en';
 
   constructor(private translate: TranslateService) {
     this.translate.setDefaultLang(this.selectedLanguage);
@@ -18,5 +18,6 @@ export class FooterComponent {
     this.selectedLanguage = lang;
     this.translate.use(lang);
     localStorage.setItem('language', lang);
+    document.documentElement.lang = lang;
   }
 }

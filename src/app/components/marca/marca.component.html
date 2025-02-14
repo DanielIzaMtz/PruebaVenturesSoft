@@ -18,10 +18,18 @@
           {{ 'MARCA.FILTRO' | translate }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-          <li><a class="dropdown-item" href="#">Most Popular</a></li>
-          <li><a class="dropdown-item" href="#">Newest</a></li>
-          <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
-          <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
+          <li>
+            <a class="dropdown-item" href="#" (click)="sortMarcas('nombreMarca'); $event.preventDefault();">
+              {{ 'MARCA.ORDEN_NOMBRE' | translate }}
+              <i *ngIf="sortCriteria === 'nombreMarca'" [ngClass]="{'bi-arrow-up': sortOrder === 'asc', 'bi-arrow-down': sortOrder === 'desc'}"></i>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" (click)="sortMarcas('descripción'); $event.preventDefault();">
+              {{ 'MARCA.ORDEN_DESCRIPCION' | translate }}
+              <i *ngIf="sortCriteria === 'descripción'" [ngClass]="{'bi-arrow-up': sortOrder === 'asc', 'bi-arrow-down': sortOrder === 'desc'}"></i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

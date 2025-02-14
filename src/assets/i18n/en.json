@@ -24,8 +24,21 @@
     "LINK_CARD": "LINK YOUR CARD"
   },
   "CATEGORIAS": {
-    "TITULO": "Explore Instant Coupons"
-  },  "MARCA": {
+    "TITULO": "Explore instant coupons",
+    "FEATURED": "Featured",
+    "RESTAURANTS": "Restaurants",
+    "TRAVEL": "Travel",
+    "FUEL": "Fuel",
+    "SERVICES": "Services",
+    "GIFTS_ENTERTAINMENT": "Gifts & Entertainment",
+    "SHOPPING": "Shopping",
+    "ELECTRONICS": "Electronics",
+    "SOFTWARE": "Software",
+    "HEALTH_BEAUTY": "Health & Beauty",
+    "OFFICE_SUPPLIES": "Office Supplies",
+    "AUTOMOTIVE": "Automotive"
+  },
+  "MARCA": {
     "TITULO": "Featured Instant Coupons (200)",
     "FILTRO": "Filter",
     "CUPON": "Instant Coupon",

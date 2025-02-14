@@ -4,8 +4,19 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrl: './table.component.css'
+  styleUrls: ['./table.component.css']
 })
 export class TableComponent {
+  tableHeaders = ['TABLA.FILA1', 'TABLA.FILA2'];
+
+  tableData = [
+    { label: 'TABLA.COLUMNA1', values: [true, true] },
+    { label: 'TABLA.COLUMNA2', values: [false, true] },
+    { label: 'TABLA.COLUMNA3', values: [false, true] },
+    { label: 'TABLA.COLUMNA4', values: [false, true] },
+    { label: 'TABLA.COLUMNA5', values: [false, true] },
+    { label: '', values: [false, true] },
+    { label: '', values: [false, true] }
+  ];
 
 }

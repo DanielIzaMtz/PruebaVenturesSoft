@@ -13,95 +13,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let row of tableData">
         <td class="text-start">
-          {{ 'TABLA.COLUMNA1' | translate }}
+          {{ row.label ? (row.label | translate) : '' }}
         </td>
-
-        <td class="text-center">
-          <i class="bi bi-check-circle text-primary fs-2"></i>
-        </td>
-
-        <td class="text-center">
-          <i class="bi bi-check-circle text-primary fs-2"></i>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-start">
-          {{ 'TABLA.COLUMNA2' | translate }}
-        </td>
-
-        <td class="text-center">
-
-        </td>
-
-        <td class="text-center">
-          <i class="bi bi-check-circle text-primary fs-2"></i>
-        </td>
-      </tr>
-      <tr class="text-start">
-        <td>
-          {{ 'TABLA.COLUMNA3' | translate }}
-        </td>
-
-        <td class="text-center">
-
-        </td>
-
-        <td class="text-center">
-          <i class="bi bi-check-circle text-primary fs-2"></i>
-        </td>
-      </tr>
-      <tr class="text-start">
-        <td>
-          {{ 'TABLA.COLUMNA4' | translate }}
-        </td>
-
-        <td class="text-center">
-
-        </td>
-
-        <td class="text-center">
-          <i class="bi bi-check-circle text-primary fs-2"></i>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-start">
-          {{ 'TABLA.COLUMNA5' | translate }}
-        </td>
-
-        <td class="text-center">
-
-        </td>
-
-        <td class="text-center">
-          <i class="bi bi-check-circle text-primary fs-2"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>
-
-        </td>
-
-        <td class="text-center">
-
-        </td>
-
-        <td class="text-center">
-          <i class="bi bi-check-circle text-primary fs-2"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>
-
-        </td>
-
-        <td class="text-center">
-
-        </td>
-
-        <td class="text-center">
-          <i class="bi bi-check-circle text-primary fs-2"></i>
+        <td class="text-center" *ngFor="let value of row.values">
+          <i *ngIf="value" class="bi bi-check-circle text-primary fs-2"></i>
         </td>
       </tr>
     </tbody>

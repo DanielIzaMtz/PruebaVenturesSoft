@@ -1,29 +1,45 @@
-import { Component } from '@angular/core';
-import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css'] // Corrección aquí
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnDestroy {
 
   isMobile: boolean = false;
   menuOpen: boolean = false;
+  private breakpointSubscription: Subscription;
 
   constructor(private breakpointObserver: BreakpointObserver) {
-    this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small])
-      .subscribe(result => {
-        this.isMobile = result.matches;
-      if (!this.isMobile) {
-        this.menuOpen = false;
-      }
+    this.breakpointSubscription = this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small])
+      .pipe(
+        catchError(error => {
+          console.error('Error en BreakpointObserver:', error);
+          return [];
+        })
+      )
+      .subscribe({
+        next: result => {
+          this.isMobile = result.matches;
+          if (!this.isMobile) {
+            this.menuOpen = false;
+          }
+        },
+        error: err => console.error('Error en la suscripción:', err)
       });
   }
+
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
+  ngOnDestroy() {
+    if (this.breakpointSubscription) {
+      this.breakpointSubscription.unsubscribe();
+    }
+  }
 }

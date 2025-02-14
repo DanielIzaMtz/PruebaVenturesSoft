@@ -24,7 +24,19 @@
     "LINK_CARD": "Vincula tu Tarjeta"
   },
   "CATEGORIAS": {
-    "TITULO": "Explorar cupones instantáneos"
+    "TITULO": "Explorar cupones instantáneos",
+    "FEATURED": "Destacados",
+    "RESTAURANTS": "Restaurantes",
+    "TRAVEL": "Viajes",
+    "FUEL": "Combustible",
+    "SERVICES": "Servicios",
+    "GIFTS_ENTERTAINMENT": "Regalos y Entretenimiento",
+    "SHOPPING": "Compras",
+    "ELECTRONICS": "Electrónica",
+    "SOFTWARE": "Software",
+    "HEALTH_BEAUTY": "Salud y Belleza",
+    "OFFICE_SUPPLIES": "Material de Oficina",
+    "AUTOMOTIVE": "Automotriz"
   },
   "MARCA": {
     "TITULO": "Cupones instantáneos destacados (200)",
