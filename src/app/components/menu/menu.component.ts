@@ -1,35 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CategoriaService } from '../../services/categoria.service';
 import { CategoriaMarcaService } from '../../services/categoriaMarca/categoria-marca.service';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnDestroy {
 
   dataComplete = [];
   categorias: any[] = [];
   selectedCategory: number | null = null;
-  private subscription: Subscription;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private categoriaService: CategoriaService,
     private categoriaMarcaService: CategoriaMarcaService
   ) {
-    this.subscription = this.categoriaService.getCategoria().subscribe({
-      next: data => {
-        if (data && !data.error) {
-          this.dataComplete = data;
-          this.categorias = data.menuItems ? data.menuItems : [];
-        } else {
-          console.error('Error en la respuesta de getCategoria:', data);
-        }
-      },
-      error: err => console.error('Error en la llamada a getCategoria:', err)
-    });
+    this.categoriaService.getCategoria()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: data => {
+          if (data && !data.error) {
+            this.dataComplete = data;
+            this.categorias = data.menuItems ? data.menuItems : [];
+          } else {
+            console.error('Error en la respuesta de getCategoria:', data);
+          }
+        },
+        error: err => console.error('Error en la llamada a getCategoria:', err)
+      });
   }
 
   seleccionarCategoria(id: number) {
@@ -38,8 +40,7 @@ export class MenuComponent {
   }
 
   ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

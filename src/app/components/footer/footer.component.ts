@@ -6,10 +6,17 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
   selectedLanguage: string = 'en';
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService) {}
+
+  ngOnInit(): void {
+    const savedLang: string | null = localStorage.getItem('language');
+    if (savedLang !== null) {
+      this.selectedLanguage = savedLang;
+    }
+
     this.translate.setDefaultLang(this.selectedLanguage);
     this.translate.use(this.selectedLanguage);
   }

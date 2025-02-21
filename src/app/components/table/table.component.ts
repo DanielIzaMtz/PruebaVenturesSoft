@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+interface TableRow {
+  label: string;
+  values: boolean[];
+}
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
 export class TableComponent {
-  tableHeaders = ['TABLA.FILA1', 'TABLA.FILA2'];
+  tableHeaders: string[] = ['TABLA.FILA1', 'TABLA.FILA2'];
 
-  tableData = [
+  tableData: TableRow[] = [
     { label: 'TABLA.COLUMNA1', values: [true, true] },
     { label: 'TABLA.COLUMNA2', values: [false, true] },
     { label: 'TABLA.COLUMNA3', values: [false, true] },

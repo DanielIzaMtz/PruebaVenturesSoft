@@ -1,107 +1,135 @@
-import { Component } from '@angular/core';
-import { MarcaService } from '../../services/marca.service';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
-import { CategoriaMarcaService } from '../../services/categoriaMarca/categoria-marca.service';
-import { Subscription } from 'rxjs';
+  import { Component, OnDestroy, OnInit } from '@angular/core';
+  import { MarcaService } from '../../services/marca.service';
+  import { CategoriaMarcaService } from '../../services/categoriaMarca/categoria-marca.service';
+  import { Subject, takeUntil } from 'rxjs';
+  import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
-@Component({
-  selector: 'app-marca',
-  templateUrl: './marca.component.html',
-  styleUrl: './marca.component.css'
-})
-export class MarcaComponent {
+  @Component({
+    selector: 'app-marca',
+    templateUrl: './marca.component.html',
+    styleUrls: ['./marca.component.css']
+  })
+  export class MarcaComponent implements OnInit, OnDestroy {
 
-  page = 1;
-  pageSize = 7;
-  totalItems = 0;
+    page = 1;
+    pageSize = 7;
+    totalItems = 0;
 
-  dataComplete = [];
-  marcas: any[] = [];
-  idMenu = 1001;
-  private subscription: Subscription | null = null;
+    dataComplete = [];
+    marcas: any[] = [];
+    idMenu = 1001;
+    isListView: boolean = false;
 
-  sortCriteria: 'nombreMarca' | 'descripción' = 'nombreMarca';
-  sortOrder: 'asc' | 'desc' = 'asc';
+    sortCriteria: 'nombreMarca' | 'descripción' = 'nombreMarca';
+    sortOrder: 'asc' | 'desc' = 'asc';
 
-  constructor(
-    private marcaService: MarcaService,
-    private categoriaMarcaService: CategoriaMarcaService
-  ){}
+    private destroy$ = new Subject<void>();
 
-  ngOnInit() {
-    this.subscription = this.categoriaMarcaService.idMenu$.subscribe({
-      next: (id) => {
-        this.idMenu = id;
-        this.obtenerMenu(id);
-      },
-      error: (err) => console.error('Error en idMenu$', err)
-    });
-    this.obtenerMenu(this.idMenu);
-  }
+    constructor(
+      private marcaService: MarcaService,
+      private categoriaMarcaService: CategoriaMarcaService,
+      private sanitizer: DomSanitizer
+    ){}
 
-  obtenerMenu(idMenu: number) {
-    this.marcaService.getMarcaById(idMenu).subscribe({
-    next: (data) => {
-      if (data && data.menuItems) {
-        this.dataComplete = data.menuItems;
-        this.totalItems = this.dataComplete.length;
-        this.page = 1;
-        this.updatePage();
-      } else {
-        console.warn('La respuesta de la API no contiene menuItems:', data);
-        this.dataComplete = [];
-        this.totalItems = 0;
+    ngOnInit() {
+      this.categoriaMarcaService.idMenu$
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (id) => {
+            this.idMenu = id;
+            this.obtenerMenu(id);
+          },
+          error: (err) => console.error('Error en idMenu$', err)
+        });
+
+      this.obtenerMenu(this.idMenu);
+    }
+
+    obtenerMenu(idMenu: number) {
+      this.marcaService.getMarcaById(idMenu)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (data) => {
+            if (data && data.menuItems) {
+              this.dataComplete = data.menuItems;
+              this.totalItems = this.dataComplete.length;
+              this.page = 1;
+              this.updatePage();
+            } else {
+              console.warn('La respuesta de la API no contiene menuItems:', data);
+              this.dataComplete = [];
+              this.totalItems = 0;
+              this.marcas = [];
+            }
+          },
+          error: (err) => {
+            console.error('Error al obtener marcas:', err);
+            this.dataComplete = [];
+            this.totalItems = 0;
+            this.marcas = [];
+          }
+        });
+    }
+
+    updatePage() {
+      console.log("Datos de marcas:", this.marcas);
+      if (this.totalItems === 0) {
         this.marcas = [];
+        return;
       }
-    },
-    error: (err) => {
-      console.error('Error al obtener marcas:', err);
-      this.dataComplete = [];
-      this.totalItems = 0;
-      this.marcas = [];
-    }
-  });
-  }
 
-  updatePage() {
-    if (this.totalItems === 0) {
-      this.marcas = [];
-      return;
+      const maxPage = Math.ceil(this.totalItems / this.pageSize);
+      if (this.page > maxPage) this.page = maxPage;
+
+      const startIndex = (this.page - 1) * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      this.marcas = this.dataComplete.slice(startIndex, endIndex);
     }
 
-    const maxPage = Math.ceil(this.totalItems / this.pageSize);
-    if (this.page > maxPage) this.page = maxPage;
+    sortMarcas(criteria: 'nombreMarca' | 'descripción') {
+      if (this.sortCriteria === criteria) {
+        this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+      } else {
+        this.sortCriteria = criteria;
+        this.sortOrder = 'asc';
+      }
 
-    const startIndex = (this.page - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.marcas = this.dataComplete.slice(startIndex, endIndex);
-  }
+      this.dataComplete.sort((a, b) => {
+        const valueA = a[criteria] ? String(a[criteria]).toLowerCase() : '';
+        const valueB = b[criteria] ? String(b[criteria]).toLowerCase() : '';
 
-  sortMarcas(criteria: 'nombreMarca' | 'descripción') {
-    if (this.sortCriteria === criteria) {
-      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
-    } else {
-      this.sortCriteria = criteria;
-      this.sortOrder = 'asc';
+        if (valueA < valueB) return this.sortOrder === 'asc' ? -1 : 1;
+        if (valueA > valueB) return this.sortOrder === 'asc' ? 1 : -1;
+        return 0;
+      });
+
+      this.updatePage();
     }
 
-    this.dataComplete.sort((a, b) => {
-      const valueA = a[criteria] ? String(a[criteria]).toLowerCase() : '';
-      const valueB = b[criteria] ? String(b[criteria]).toLowerCase() : '';
+    setListView() {
+      this.isListView = true;
+    }
 
-      if (valueA < valueB) return this.sortOrder === 'asc' ? -1 : 1;
-      if (valueA > valueB) return this.sortOrder === 'asc' ? 1 : -1;
-      return 0;
-    });
+    setGridView() {
+      this.isListView = false;
+    }
 
-    this.updatePage();
-  }
+    getImageUrl(imageUrl: string): SafeUrl {
+      if (!imageUrl) {
+        return 'assets/placeholder.png';
+      }
+      return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+    }
 
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+
+    handleImageError(event: Event) {
+      const imgElement = event.target as HTMLImageElement;
+      imgElement.src = 'assets/placeholder.png';
+    }
+
+
+    ngOnDestroy() {
+      this.destroy$.next();
+      this.destroy$.complete();
     }
   }
-
-}

@@ -1,25 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MarcaService } from '../../services/marca.service';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
   styleUrls: ['./detalle.component.css']
 })
-export class DetalleComponent {
+export class DetalleComponent implements OnInit, OnDestroy {
   dataComplete: any[] = [];
   marcas: any[] = [];
-  private subscription: Subscription | null = null;
 
-  constructor(private marcaService: MarcaService) {
-    this.subscription = this.marcaService.getMarca().subscribe({
+  private destroy$ = new Subject<void>();
+
+  constructor(private marcaService: MarcaService) {}
+
+  ngOnInit() {
+    this.marcaService.getMarca()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
       next: (data) => {
-        if (data && data.menuItems) {
+        if (data && Array.isArray(data.menuItems) && data.menuItems.length > 0) {
           this.dataComplete = data.menuItems;
           this.marcas = this.getFilteredMarcas(this.dataComplete);
         } else {
-          console.warn('La respuesta de la API no contiene menuItems:', data);
+          console.warn('No hay registros en la API.');
           this.marcas = [];
         }
       },
@@ -28,6 +33,7 @@ export class DetalleComponent {
         this.marcas = [];
       }
     });
+
   }
 
   getFilteredMarcas(marcas: any[]): any[] {
@@ -50,9 +56,12 @@ export class DetalleComponent {
     return sortedMarcas.slice(0, 4);
   }
 
+  onImageLoad(marcaNombre: string) {
+    console.log(`Imagen de ${marcaNombre} cargada correctamente.`);
+  }
+
   ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

@@ -16,6 +16,12 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpErrorInterceptor } from './services/http-error.interceptor.ts.service';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -36,6 +42,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 5000,
+      progressBar: true
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -43,8 +55,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     })
+
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

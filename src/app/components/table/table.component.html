@@ -13,14 +13,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of tableData">
-        <td class="text-start">
-          {{ row.label ? (row.label | translate) : '' }}
-        </td>
-        <td class="text-center" *ngFor="let value of row.values">
-          <i *ngIf="value" class="bi bi-check-circle text-primary fs-2"></i>
-        </td>
-      </tr>
+      @for (row of tableData; track $index) {
+        <tr>
+          <td class="text-start">
+            {{ row.label ? (row.label | translate) : '' }}
+          </td>
+          @for (value of row.values; track $index) {
+            <td class="text-center">
+              @if (value) {
+                <i class="bi bi-check-circle text-primary fs-2"></i>
+              }
+            </td>
+          }
+        </tr>
+      }
     </tbody>
   </table>
 </div>

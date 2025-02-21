@@ -1,14 +1,14 @@
 <div class="container text-center mt-5 pt-5">
-  <div class="d-flex justify-content-between ">
-    <h2 class="text-start">{{ 'MARCA.TITULO' | translate }}</h2>
+  <div class="d-flex justify-content-between">
+    <h2 class="text-start">{{ 'MARCA.TITULO' | translate }} ({{ totalItems }})</h2>
     <div class="d-flex gap-2 align-items-center">
       <div class="dropdown">
-        <button class="btn btn-link">
+        <button class="btn btn-link" (click)="setListView()">
           <i class="bi bi-list-task text-primary fs-5"></i>
         </button>
       </div>
       <div class="dropdown">
-        <button class="btn btn-primary rounded-2">
+        <button class="btn btn-primary rounded-2" (click)="setGridView()">
           <i class="bi bi-grid fs-5"></i>
         </button>
       </div>
@@ -17,17 +17,22 @@
           aria-expanded="false">
           {{ 'MARCA.FILTRO' | translate }}
         </button>
+
         <ul class="dropdown-menu" aria-labelledby="sortDropdown">
           <li>
             <a class="dropdown-item" href="#" (click)="sortMarcas('nombreMarca'); $event.preventDefault();">
               {{ 'MARCA.ORDEN_NOMBRE' | translate }}
-              <i *ngIf="sortCriteria === 'nombreMarca'" [ngClass]="{'bi-arrow-up': sortOrder === 'asc', 'bi-arrow-down': sortOrder === 'desc'}"></i>
+              @if (sortCriteria === 'nombreMarca') {
+              <i [ngClass]="{'bi-arrow-up': sortOrder === 'asc', 'bi-arrow-down': sortOrder === 'desc'}"></i>
+              }
             </a>
           </li>
           <li>
             <a class="dropdown-item" href="#" (click)="sortMarcas('descripción'); $event.preventDefault();">
               {{ 'MARCA.ORDEN_DESCRIPCION' | translate }}
-              <i *ngIf="sortCriteria === 'descripción'" [ngClass]="{'bi-arrow-up': sortOrder === 'asc', 'bi-arrow-down': sortOrder === 'desc'}"></i>
+              @if (sortCriteria === 'descripción') {
+              <i [ngClass]="{'bi-arrow-up': sortOrder === 'asc', 'bi-arrow-down': sortOrder === 'desc'}"></i>
+              }
             </a>
           </li>
         </ul>
@@ -39,37 +44,54 @@
 <div class="container-fluid text-center py-5">
   <div class="row justify-content-center">
 
-    <div class="col-lg-3 col-md-6 col-sm-12 mb-4" *ngFor="let marca of marcas;">
+    @if (isListView) {
+    <div class="col-12">
+      <ul class="list-group">
+        @for (marca of marcas; track $index) {
+        <li class="list-group-item text-start d-flex align-items-center">
+          @if (marca.imagen) {
+            <img [src]="getImageUrl(marca.imagen)" class="img-thumbnail me-3" style="width: 80px; height: 80px;" alt="Imagen de Marca" (error)="handleImageError($event)" />
+          }
+          <div>
+            <h5 class="fw-bold" innerHTML="{{ marca.nombreMarca }}"></h5>
+            <p [innerHTML]="marca['descripción']"></p>
+          </div>
+        </li>
+        }
+      </ul>
+    </div>
+    } @else {
+    @for (marca of marcas; track $index) {
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
       <div class="card h-100 d-flex flex-column">
-        <img *ngIf="marca.imagen" [src]="marca.imagen" class="card-img-top mb-2" alt="Fissure in Sandstone" />
+        @if (marca.imagen) {
+          <img [src]="getImageUrl(marca.imagen)" class="card-img-top mb-2" alt="Imagen de Marca" (error)="handleImageError($event)" />
+        }
         <div class="cashback-badge"><i class="bi bi-credit-card-2-back"></i> {{ 'MARCA.CUPON' | translate }}</div>
         <div class="card-body">
-          <p class="card-title text-start">{{ marca.nombreMarca }}</p>
-          <h5 class="card-text text-start fw-bold">{{ marca['descripción'] }}</h5>
+          <p class="card-title text-start" innerHTML="{{ marca.nombreMarca }}"></p>
+          <h5 class="card-text text-start fw-bold" innerHTML="{{ marca['descripción'] }}"></h5>
         </div>
         <div class="container-fluid text-start py-4">
           <a href="#!" class="text-start text-dark text-decoration-none">
-            {{ 'MARCA.OBTENER' | translate }}  <i class="bi bi-arrow-right"></i>
+            {{ 'MARCA.OBTENER' | translate }} <i class="bi bi-arrow-right"></i>
           </a>
         </div>
       </div>
     </div>
+    }
+    }
+  </div>
 
-    <div class="d-flex justify-content-center">
-      <ngb-pagination
-        [collectionSize]="totalItems"
-        [(page)]="page"
-        [pageSize]="pageSize"
-        [boundaryLinks]="true"
-        [maxSize]="5"
-        [rotate]="true"
-        (pageChange)="updatePage()"
-        aria-label="Default pagination">
-      </ngb-pagination>
-    </div>
+  <div class="d-flex justify-content-center">
+    <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="pageSize" [boundaryLinks]="true"
+      [maxSize]="5" [rotate]="true" (pageChange)="updatePage()" aria-label="Default pagination">
+    </ngb-pagination>
+  </div>
 
-
-    <div class="container-fluid text-center py-5">
-      <a href="#!" class="text-dark fw-bold text-decoration-none">{{ 'MARCA.CUPONES' | translate }} <i class="bi bi-chevron-right fs-6"></i> </a>
-    </div>
+  <div class="container-fluid text-center py-5">
+    <a href="#!" class="text-dark fw-bold text-decoration-none">{{ 'MARCA.CUPONES' | translate }}
+      <i class="bi bi-chevron-right fs-6"></i>
+    </a>
+  </div>
 </div>
